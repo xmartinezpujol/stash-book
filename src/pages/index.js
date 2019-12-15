@@ -20,6 +20,7 @@ class Index extends React.Component {
       <Layout>
         <SEO title="Home" />
         <h1>My Stashes</h1>
+          <View style={{ flexWrap: 'wrap' }}>
           {stashes.edges.map(stash =>
             <Card
               color="purewhite"
@@ -27,23 +28,28 @@ class Index extends React.Component {
               dimensions={dimensions}
               style={{ height: 0 }}
             >
-              <ReactMarkdown
-                source={stash.node.data.title.html}
-                escapeHtml={false}
-              />
-              <ReactMarkdown
-                source={stash.node.data.source.html}
-                escapeHtml={false}
-              />
-              <ReactMarkdown
-                source={stash.node.data.content.html}
-                escapeHtml={false}
-              />
-              <View justify="center" round={5} width={50} type="rice">
-                {stash.node.tags}
+              <View direction="column" justify="space-between" style={{ height: '100%', paddingBottom: 10 }}>
+                <View direction="column">
+                  <ReactMarkdown
+                    source={stash.node.data.title.html}
+                    escapeHtml={false}
+                  />
+                  <ReactMarkdown
+                    source={stash.node.data.source.html}
+                    escapeHtml={false}
+                  />
+                  <ReactMarkdown
+                    source={stash.node.data.content.html}
+                    escapeHtml={false}
+                  />
+                </View>
+                <View justify="center" round={5} width={50} type="rice">
+                  {stash.node.tags}
+                </View>
               </View>
             </Card>
           )}
+          </View>
       </Layout>
     );
   }
